@@ -21,7 +21,41 @@ const SKILLS = [
     { id: 'CRISIS_COMMUNICATION_GOV', name: 'CRISIS_COMMUNICATION_GOV', cat: 'strategy', catColor: 'var(--cat-strategy)', desc: 'Entwickelt einen schnellen Kommunikationsplan (CARE-Framework) für lokale Krisen (z.B. Hochwasser, Stromausfall).', example: 'Erstelle einen Kommunikationsplan für einen großflächigen Stromausfall im Stadtgebiet.' },
     { id: 'OZG_PROCESS_MODEL', name: 'OZG_PROCESS_MODEL', cat: 'strategy', catColor: 'var(--cat-strategy)', desc: 'Modelliert einen Verwaltungsprozess im Rahmen der OZG-Umsetzung (Onlinezugangsgesetz).', example: 'Modelliere den digitalen Antragsprozess für einen Bewohnerparkausweis nach OZG-Vorgaben.' },
     { id: 'BUDGET_EXPLANATION', name: 'BUDGET_EXPLANATION', cat: 'admin', catColor: 'var(--cat-admin)', desc: 'Erklärt komplexe Haushaltsposten oder Haushaltspläne für Nicht-Finanzexperten (z.B. für den Bürgerhaushalt).', example: 'Erkläre den Posten "Investive Schlüsselzuweisungen" aus dem Haushaltsplan für Bürger verständlich.' },
-    { id: 'FAQ_GENERATOR_GOV', name: 'FAQ_GENERATOR_GOV', cat: 'content', catColor: 'var(--cat-content)', desc: 'Generiert eine Liste der häufigsten Fragen und Antworten (FAQ) zu einer neuen städtischen Dienstleistung.', example: 'Erstelle FAQs für die Einführung der neuen digitalen KFZ-Zulassung (i-Kfz).' }
+    { id: 'FAQ_GENERATOR_GOV', name: 'FAQ_GENERATOR_GOV', cat: 'content', catColor: 'var(--cat-content)', desc: 'Generiert eine Liste der häufigsten Fragen und Antworten (FAQ) zu einer neuen städtischen Dienstleistung.', example: 'Erstelle FAQs für die Einführung der neuen digitalen KFZ-Zulassung (i-Kfz).' },
+
+    // Weitere Skills aus der Doku & Allgemeine Ergänzungen (um 39 Skills vollzumachen)
+    { id: 'URL_CONTENT', name: 'URL_CONTENT', cat: 'data', catColor: 'var(--cat-data)', desc: 'Extrahiert und bereinigt Text von Webseiten (HTML→Markdown).', example: 'Extrahiere den Inhalt von https://www.bundesregierung.de' },
+    { id: 'RAG_SEARCH', name: 'RAG_SEARCH', cat: 'data', catColor: 'var(--cat-data)', desc: 'Durchsucht die interne Wissensdatenbank.', example: 'Suche in der Wissensdatenbank nach Richtlinien für Homeoffice.' },
+    { id: 'CALCULATION', name: 'CALCULATION', cat: 'data', catColor: 'var(--cat-data)', desc: 'Löst mathematische Ausdrücke mit Lösungsweg.', example: 'Berechne 19% MwSt. auf 4500 Euro und zeige den Rechenweg.' },
+    { id: 'CREATE_WORD', name: 'CREATE_WORD', cat: 'file', catColor: 'var(--cat-file)', desc: 'Erstellt ein Word-Dokument (.docx) zum angegebenen Thema.', example: 'Erstelle ein Word-Dokument mit dem Protokoll der letzten Gemeinderatssitzung.' },
+    { id: 'CREATE_EXCEL', name: 'CREATE_EXCEL', cat: 'file', catColor: 'var(--cat-file)', desc: 'Erstellt eine Excel-Tabelle (.xlsx) für Datenstrukturen.', example: 'Erstelle eine Excel-Tabelle für die Projektzeiterfassung 2024.' },
+    { id: 'TRANSLATE', name: 'TRANSLATE', cat: 'content', catColor: 'var(--cat-content)', desc: 'Übersetzt Texte unter Bewahrung der Tonalität.', example: 'Übersetze diesen Bescheid ins Englische für internationale Bürger.' },
+    { id: 'UNIT_CONVERTER', name: 'UNIT_CONVERTER', cat: 'data', catColor: 'var(--cat-data)', desc: 'Einheitenumrechnung mit Rechenweg.', example: 'Rechne 45 Hektar in Quadratmeter um.' },
+    { id: 'NEWS_SEARCH', name: 'NEWS_SEARCH', cat: 'data', catColor: 'var(--cat-data)', desc: 'Aktuelle Nachrichtenzusammenfassung zu einem Thema.', example: 'Fasse die aktuellen Nachrichten zum Thema "Digitalpakt Schule" zusammen.' },
+    { id: 'GENERATE_HTML', name: 'GENERATE_HTML', cat: 'file', catColor: 'var(--cat-file)', desc: 'Generiert ein HTML-Dokument basierend auf der Beschreibung.', example: 'Generiere eine HTML-Landingpage für den neuen Bürgerservice.' },
+    { id: 'WRITE_SPEECH', name: 'WRITE_SPEECH', cat: 'content', catColor: 'var(--cat-content)', desc: 'Schreibt eine Rede inkl. Regieanweisungen.', example: 'Schreibe eine Rede für den Bürgermeister zur Eröffnung des neuen Rathauses.' },
+    { id: 'SOCIAL_MEDIA_POST', name: 'SOCIAL_MEDIA_POST', cat: 'content', catColor: 'var(--cat-content)', desc: 'Erstellt Social-Media-Beiträge nach dem AIDA-Framework.', example: 'Schreibe einen LinkedIn-Post über die Einführung der E-Akte.' },
+    { id: 'WRITE_JOB_AD', name: 'WRITE_JOB_AD', cat: 'content', catColor: 'var(--cat-content)', desc: 'Verfasst eine moderne Stellenanzeige ohne HR-Floskeln.', example: 'Erstelle eine Stellenanzeige für einen IT-Projektleiter (m/w/d) in der Stadtverwaltung.' },
+    { id: 'CODE_EXPLAIN', name: 'CODE_EXPLAIN', cat: 'strategy', catColor: 'var(--cat-strategy)', desc: 'Erklärt Code-Snippets hinsichtlich Sicherheit und Clean Code.', example: 'Erkläre diesen Python-Code zur Datenbereinigung.' },
+    { id: 'REQUIREMENTS_ANALYSIS', name: 'REQUIREMENTS_ANALYSIS', cat: 'strategy', catColor: 'var(--cat-strategy)', desc: 'Analysiert Anforderungen nach INVEST + BDD (Given-When-Then).', example: 'Analysiere die Anforderungen für das neue Kita-Portal.' },
+    { id: 'MEETING_PROTOCOL', name: 'MEETING_PROTOCOL', cat: 'admin', catColor: 'var(--cat-admin)', desc: 'Erstellt ein DIN-5008-konformes Protokoll aus Notizen.', example: 'Erstelle ein Protokoll aus diesen Notizen vom Jour Fixe.' },
+    { id: 'CHANGE_IMPACT_ANALYSIS', name: 'CHANGE_IMPACT_ANALYSIS', cat: 'admin', catColor: 'var(--cat-admin)', desc: 'Analysiert die Auswirkungen geplanter Änderungen.', example: 'Analysiere die Auswirkungen der Umstellung auf Microsoft 365.' },
+    { id: 'PERSONA_GENERATOR', name: 'PERSONA_GENERATOR', cat: 'admin', catColor: 'var(--cat-admin)', desc: 'Generiert 3 Personas für eine Zielgruppe.', example: 'Erstelle Personas für die Nutzer des digitalen Bauantrags.' },
+    { id: 'EIGHTH_MAN_ANALYSIS', name: 'EIGHTH_MAN_ANALYSIS', cat: 'strategy', catColor: 'var(--cat-strategy)', desc: 'Führt eine 8. Mann-Analyse (7 Pro + 1 fundamentales Contra) durch.', example: 'Mache eine 8. Mann-Analyse zur Einführung einer 4-Tage-Woche in der Verwaltung.' },
+    { id: 'GAMIFICATION_STRATEGY', name: 'GAMIFICATION_STRATEGY', cat: 'strategy', catColor: 'var(--cat-strategy)', desc: 'Entwickelt eine Gamification-Strategie (Octalysis) für Prozesse.', example: 'Wie können wir die interne Fortbildung gamifizieren?' },
+    { id: 'STARTUP_PITCH', name: 'STARTUP_PITCH', cat: 'strategy', catColor: 'var(--cat-strategy)', desc: 'Erstellt einen Pitch im Y-Combinator-Standard für Ideen.', example: 'Erstelle einen Pitch für unsere neue Smart-City-App.' },
+    { id: 'DEVILS_ADVOCATE', name: 'DEVILS_ADVOCATE', cat: 'strategy', catColor: 'var(--cat-strategy)', desc: 'Nimmt die Rolle des "Advocatus Diaboli" zu einer These ein.', example: 'Sei der Advocatus Diaboli für das Konzept des komplett papierlosen Büros.' },
+    { id: 'TIME_ZONE', name: 'TIME_ZONE', cat: 'data', catColor: 'var(--cat-data)', desc: 'Aktuelle Systemzeit für eine Stadt (Simulation).', example: 'Wie spät ist es gerade in Tokio?' },
+    { id: 'STOCK_INFO', name: 'STOCK_INFO', cat: 'data', catColor: 'var(--cat-data)', desc: 'Börsendaten (Simulation).', example: 'Wie steht die Komm.ONE Aktie? (Simulation)' },
+    { id: 'WEATHER', name: 'WEATHER', cat: 'data', catColor: 'var(--cat-data)', desc: 'Wetterprognose für einen Ort (Simulation).', example: 'Wie wird das Wetter morgen in Stuttgart?' },
+
+    // Zusätzliche neue Skills (über 39 hinaus)
+    { id: 'CREATE_DIAGRAM', name: 'CREATE_DIAGRAM', cat: 'file', catColor: 'var(--cat-file)', desc: 'Erstellt ein Flussdiagramm, Ablaufdiagramm oder Prozessmodell.', example: 'Erstelle ein Ablaufdiagramm für den neuen digitalen Bauantrag.' },
+    { id: 'GENERATE_JOB_INTERVIEW_QUESTIONS', name: 'GENERATE_JOB_INTERVIEW_QUESTIONS', cat: 'strategy', catColor: 'var(--cat-strategy)', desc: 'Erstellt einen strukturierten Interview-Leitfaden für Bewerbungsgespräche.', example: 'Erstelle Interview-Fragen für die Position des IT-Sicherheitsbeauftragten.' },
+    { id: 'E_AKTE_CLASSIFICATION', name: 'E_AKTE_CLASSIFICATION', cat: 'admin', catColor: 'var(--cat-admin)', desc: 'Schlägt Aktenzeichen und Klassifizierungen nach dem kommunalen Aktenplan vor.', example: 'Wie sollte dieses Dokument über den neuen Radweg klassifiziert werden?' },
+    { id: 'GRANT_APPLICATION_REVIEW', name: 'GRANT_APPLICATION_REVIEW', cat: 'admin', catColor: 'var(--cat-admin)', desc: 'Unterstützt bei der Vorprüfung von Förderanträgen auf Vollständigkeit.', example: 'Prüfe diesen Förderantrag für die Vereinsförderung auf fehlende Angaben.' },
+    { id: 'PUBLIC_PARTICIPATION_PLAN', name: 'PUBLIC_PARTICIPATION_PLAN', cat: 'strategy', catColor: 'var(--cat-strategy)', desc: 'Erstellt ein Konzept für die Bürgerbeteiligung bei Bauprojekten.', example: 'Erstelle einen Bürgerbeteiligungsplan für die Neugestaltung des Stadtparks.' },
+    { id: 'INCLUSIVE_LANGUAGE_CHECK', name: 'INCLUSIVE_LANGUAGE_CHECK', cat: 'content', catColor: 'var(--cat-content)', desc: 'Prüft und überarbeitet Texte auf inklusive und gendergerechte Sprache.', example: 'Überarbeite dieses Formular auf gendergerechte Sprache.' }
 ];
 
 // --- DOM Elements ---
@@ -30,6 +64,11 @@ const chatMessages = document.getElementById('chat-messages');
 const welcomeScreen = document.getElementById('welcome-screen');
 const promptInput = document.getElementById('prompt-input');
 const btnSend = document.getElementById('btn-send');
+const btnAttach = document.getElementById('btn-attach');
+const fileUpload = document.getElementById('file-upload');
+const fileChips = document.getElementById('file-chips');
+
+let attachedFiles = [];
 const charCounter = document.getElementById('char-counter');
 const btnSkills = document.getElementById('btn-skills');
 const btnClear = document.getElementById('btn-clear');
@@ -43,6 +82,12 @@ const catTabs = document.querySelectorAll('.cat-tab');
 function init() {
     renderSkills(SKILLS);
     setupEventListeners();
+
+    // Initialize Mermaid
+    if (typeof mermaid !== 'undefined') {
+        mermaid.initialize({ startOnLoad: false, theme: 'default' });
+    }
+
     promptInput.focus();
 }
 
@@ -83,6 +128,18 @@ function setupEventListeners() {
         });
     });
 
+    // File Attachments
+    btnAttach.addEventListener('click', () => fileUpload.click());
+
+    fileUpload.addEventListener('change', (e) => {
+        const files = Array.from(e.target.files);
+        if (files.length > 0) {
+            files.forEach(f => attachedFiles.push(f));
+            renderFileChips();
+        }
+        fileUpload.value = ''; // Reset
+    });
+
     // Clear Chat
     btnClear.addEventListener('click', () => {
         chatMessages.innerHTML = '';
@@ -90,6 +147,8 @@ function setupEventListeners() {
         promptInput.value = '';
         promptInput.style.height = 'auto';
         promptInput.dispatchEvent(new Event('input'));
+        attachedFiles = [];
+        renderFileChips();
     });
 
     // Skill Drawer toggles
@@ -112,16 +171,27 @@ async function sendMessage() {
     const text = promptInput.value.trim();
     if (!text) return;
 
+    // Combine text with file info for UI and Backend
+    let fullText = text;
+    if (attachedFiles.length > 0) {
+        fullText += "\n\n--- Angehängte Dateien ---\n";
+        attachedFiles.forEach(f => {
+            fullText += `- ${f.name} (${Math.round(f.size/1024)} KB)\n`;
+        });
+    }
+
     // Hide welcome screen
     welcomeScreen.style.display = 'none';
 
     // 1. Render User Message
-    renderMessage('user', text);
+    renderMessage('user', fullText);
 
     // Clear input
     promptInput.value = '';
     promptInput.style.height = 'auto';
     promptInput.dispatchEvent(new Event('input'));
+    attachedFiles = [];
+    renderFileChips();
 
     // 2. Render Loading Indicator
     const loadingId = 'loading-' + Date.now();
@@ -133,7 +203,7 @@ async function sendMessage() {
         const response = await fetch(`${API_BASE}/orchestrate`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ prompt: text })
+            body: JSON.stringify({ prompt: fullText })
         });
 
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
@@ -207,6 +277,28 @@ function renderAssistantResponse(data) {
         const mdDiv = document.createElement('div');
         mdDiv.className = 'markdown-body';
         mdDiv.innerHTML = marked.parse(data.answer);
+
+        // Render Mermaid Diagrams if present
+        if (typeof mermaid !== 'undefined') {
+            const mermaidBlocks = mdDiv.querySelectorAll('pre code.language-mermaid');
+            mermaidBlocks.forEach(async (block, index) => {
+                const pre = block.parentElement;
+                const id = `mermaid-${Date.now()}-${index}`;
+                const graphDefinition = block.textContent;
+
+                try {
+                    const { svg } = await mermaid.render(id, graphDefinition);
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'mermaid-wrapper';
+                    wrapper.innerHTML = svg;
+                    pre.replaceWith(wrapper);
+                } catch (e) {
+                    console.error('Mermaid rendering failed', e);
+                    // Leave the code block as fallback
+                }
+            });
+        }
+
         contentDiv.appendChild(mdDiv);
     }
 
@@ -329,6 +421,32 @@ function renderError(msg) {
 
 function scrollToBottom() {
     chatArea.scrollTop = chatArea.scrollHeight;
+}
+
+// --- File Chips UI ---
+function renderFileChips() {
+    fileChips.innerHTML = '';
+    attachedFiles.forEach((file, index) => {
+        const chip = document.createElement('div');
+        chip.className = 'file-chip';
+
+        chip.innerHTML = `
+            <span class="chip-icon">📄</span>
+            <span class="chip-name">${file.name}</span>
+            <span class="chip-size">${Math.round(file.size/1024)} KB</span>
+            <button class="btn-icon chip-remove" data-index="${index}">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        `;
+
+        const removeBtn = chip.querySelector('.chip-remove');
+        removeBtn.addEventListener('click', () => {
+            attachedFiles.splice(index, 1);
+            renderFileChips();
+        });
+
+        fileChips.appendChild(chip);
+    });
 }
 
 // --- Drawer & Skills ---
