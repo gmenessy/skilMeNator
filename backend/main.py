@@ -181,10 +181,14 @@ Generiere mindestens 4 Folien. Antworte AUSSCHLIESSLICH mit dem JSON-Code ohne M
              # Call LLM for general chat
              pipeline_steps.append(PipelineStep(skill="ROUTING", input=skill_input[:60], status="OK"))
              # Mock response for now if no API key is set
-             if not settings.provider1_key and not settings.provider2_key:
-                  answer = "Dies ist eine simulierte Antwort, da keine API-Schlüssel konfiguriert sind. Sie sagten: " + request.prompt
+             if not settings.provider1_key and settings.provider2_key == "sk-mock-key":
+                  answer = "Dies ist eine simulierte Antwort, da keine gültigen API-Schlüssel konfiguriert sind. Sie sagten: " + request.prompt
              else:
-                  answer = get_llm_response(request.prompt)
+                  try:
+                      answer = get_llm_response(request.prompt)
+                  except Exception as e:
+                      answer = f"Error communicating with AI service: {str(e)}"
+                      pipeline_steps[-1].status = "ERROR"
 
              pipeline_steps.append(PipelineStep(skill="SYNTHESIS", input="Generating response", status="OK"))
              final_answer += answer

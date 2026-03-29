@@ -472,6 +472,52 @@ body {
     flex-direction: column;
 }
 
+.file-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.file-chips:empty {
+    display: none;
+    margin-bottom: 0;
+}
+
+.file-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #e2e8f0;
+    padding: 4px 8px;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    color: var(--midnight);
+}
+
+.chip-name {
+    font-weight: 500;
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chip-size {
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+}
+
+.chip-remove {
+    padding: 2px;
+    color: var(--text-secondary);
+    background: transparent;
+}
+.chip-remove:hover {
+    color: #EF4444;
+    background: transparent;
+}
+
 .prompt-input {
     width: 100%;
     border: none;
