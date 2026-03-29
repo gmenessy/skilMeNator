@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatOrchestrator · KI-Plattform</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Marked for Markdown rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- App Logic -->
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-mark">K.1</div>
+                <h1 class="title">ChatOrchestrator · KI-Plattform</h1>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-outline" id="btn-skills">39 Skills</button>
+                <button class="btn btn-outline" id="btn-clear">Löschen</button>
+            </div>
+        </div>
+        <div class="header-stripe"></div>
+    </header>
+
+    <main class="main-container">
+        <!-- Chat Area -->
+        <section class="chat-area" id="chat-area">
+            <!-- Welcome Screen -->
+            <div class="welcome-screen" id="welcome-screen">
+                <div class="orb"></div>
+                <h2>Hallo, wie kann ich helfen?</h2>
+                <div class="quick-actions">
+                    <button class="btn-quick-action" data-prompt="Erstelle eine kurze Zusammenfassung zum Thema Datenschutz-Grundverordnung (DSGVO).">
+                        📄 Zusammenfassen
+                    </button>
+                    <button class="btn-quick-action" data-prompt="Schreibe eine professionelle E-Mail an das Team bezüglich des nächsten Projektabschlusses.">
+                        ✉️ E-Mail verfassen
+                    </button>
+                    <button class="btn-quick-action" data-prompt="Erstelle eine Präsentation über Digitalisierung in der öffentlichen Verwaltung.">
+                        📊 Präsentation erstellen
+                    </button>
+                    <button class="btn-quick-action" data-prompt="Analysiere die Vor- und Nachteile von Remote Work für ein 8. Mann-Analyse-Szenario.">
+                        ⚖️ Strategie-Analyse
+                    </button>
+                </div>
+            </div>
+
+            <!-- Chat Messages Container -->
+            <div class="chat-messages" id="chat-messages">
+                <!-- Dynamic messages go here -->
+            </div>
+        </section>
+
+        <!-- Input Bar -->
+        <section class="input-bar-container">
+            <div class="input-wrapper">
+                <div class="input-actions-left">
+                    <button class="btn-icon" id="btn-attach" title="Datei anhängen">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+                    </button>
+                    <input type="file" id="file-upload" multiple style="display: none;">
+                </div>
+
+                <div class="input-field-container">
+                    <div class="file-chips" id="file-chips"></div>
+                    <textarea class="prompt-input" id="prompt-input" placeholder="Nachricht an ChatOrchestrator..." rows="1" maxlength="8000"></textarea>
+                    <div class="char-counter" id="char-counter">0 / 8000</div>
+                </div>
+
+                <div class="input-actions-right">
+                    <button class="btn-icon btn-send" id="btn-send" title="Senden">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Skill Drawer (Overlay) -->
+    <div class="skill-drawer" id="skill-drawer">
+        <div class="skill-drawer-header">
+            <h3>Skill-Katalog (39)</h3>
+            <button class="btn-icon" id="btn-close-skills" title="Schließen">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+        <div class="skill-search">
+            <input type="text" id="skill-search-input" placeholder="Skills durchsuchen...">
+        </div>
+        <div class="skill-categories">
+            <button class="cat-tab active" data-cat="all">Alle</button>
+            <button class="cat-tab" data-cat="data">Daten</button>
+            <button class="cat-tab" data-cat="file">Dateien</button>
+            <button class="cat-tab" data-cat="content">Inhalte</button>
+            <button class="cat-tab" data-cat="strategy">Strategie</button>
+            <button class="cat-tab" data-cat="admin">Verwaltung</button>
+        </div>
+        <div class="skill-list" id="skill-list">
+            <!-- Dynamic skills list -->
+        </div>
+    </div>
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+</body>
+</html>

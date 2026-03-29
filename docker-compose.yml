@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_NAME=ChatOrchestrator Backend
+
+      # Configure Provider 1 (e.g., OpenAI)
+      - PROVIDER1_URL=https://api.openai.com/v1
+      - PROVIDER1_KEY=${OPENAI_API_KEY:-}
+      - PROVIDER1_MODEL=gpt-4-turbo-preview
+
+      # Configure Provider 2 (e.g., a local server or different provider via HTTP)
+      - PROVIDER2_URL=http://localhost:11434/v1 # e.g., ollama default
+      - PROVIDER2_KEY=sk-mock-key
+      - PROVIDER2_MODEL=llama3
+
+      # Proxy settings if required in corporate network
+      - HTTP_PROXY=${HTTP_PROXY:-}
+      - HTTPS_PROXY=${HTTPS_PROXY:-}
+    volumes:
+      - ./backend/generated_files:/app/generated_files
+    restart: unless-stopped
