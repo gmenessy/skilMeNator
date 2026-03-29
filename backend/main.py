@@ -101,8 +101,13 @@ def route_skills(prompt: str) -> List[Dict[str, str]]:
     Analyzes the prompt and decides which skills to run.
     """
     # Simple keyword routing
-    if "präsentation" in prompt.lower() or "powerpoint" in prompt.lower() or "ppt" in prompt.lower():
+    prompt_lower = prompt.lower()
+
+    if "präsentation" in prompt_lower or "powerpoint" in prompt_lower or "ppt" in prompt_lower:
         return [{"skill": "CREATE_PPT", "input": prompt}]
+
+    if "diagramm" in prompt_lower or "ablauf" in prompt_lower or "prozess" in prompt_lower:
+        return [{"skill": "CREATE_DIAGRAM", "input": prompt}]
 
     # Default fallback
     return [{"skill": "GENERAL_CHAT", "input": prompt}]
@@ -176,6 +181,34 @@ Generiere mindestens 4 Folien. Antworte AUSSCHLIESSLICH mit dem JSON-Code ohne M
                 print(f"Error generating PPT: {e}")
                 pipeline_steps[-1].status = "ERROR"
                 final_answer += f"\nEntschuldigung, es gab einen Fehler bei der Generierung der Präsentation: {str(e)}"
+
+        elif skill == "CREATE_DIAGRAM":
+            pipeline_steps.append(PipelineStep(skill="CREATE_DIAGRAM", input=skill_input[:60], status="OK"))
+
+            diagram_prompt = f"""
+Erstelle ein Ablauf- oder Prozessdiagramm basierend auf folgender Eingabe: "{skill_input}"
+Berücksichtige auch den vorherigen Kontext, falls vorhanden: "{context}"
+
+Die Ausgabe MUSS gültiger Mermaid.js Code sein.
+Nutze hauptsächlich `graph TD` für Flussdiagramme oder `sequenceDiagram`.
+Antworte AUSSCHLIESSLICH mit dem Markdown-Codeblock, beginnend mit ```mermaid und endend mit ```.
+Füge keine weiteren Erklärungen hinzu.
+            """
+
+            if not settings.provider1_key and settings.provider2_key == "sk-mock-key":
+                 # Mock Response for diagram
+                 answer = "Hier ist ein simuliertes Diagramm für Ihren Prozess:\n\n```mermaid\ngraph TD;\n    A[Bürger reicht Antrag ein] --> B{Antrag vollständig?};\n    B -- Ja --> C[Bearbeitung Fachamt];\n    B -- Nein --> D[Rückfrage an Bürger];\n    C --> E[Bescheid erstellen];\n    E --> F[Versand];\n```"
+                 final_answer += answer
+                 context += f"\n[CREATE_DIAGRAM]: Diagramm generiert."
+            else:
+                 try:
+                     llm_response = get_llm_response(diagram_prompt, system_prompt="Du bist ein Experte für Geschäftsprozessmodellierung. Antworte nur mit Markdown Mermaid-Blöcken.")
+                     final_answer += f"Hier ist das gewünschte Diagramm:\n\n{llm_response}"
+                     context += f"\n[CREATE_DIAGRAM]: Diagramm generiert."
+                 except Exception as e:
+                     print(f"Error generating Diagram: {e}")
+                     pipeline_steps[-1].status = "ERROR"
+                     final_answer += f"\nEntschuldigung, es gab einen Fehler bei der Generierung des Diagramms: {str(e)}"
 
         elif skill == "GENERAL_CHAT":
              # Call LLM for general chat

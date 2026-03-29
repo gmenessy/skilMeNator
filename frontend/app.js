@@ -50,6 +50,7 @@ const SKILLS = [
     { id: 'WEATHER', name: 'WEATHER', cat: 'data', catColor: 'var(--cat-data)', desc: 'Wetterprognose für einen Ort (Simulation).', example: 'Wie wird das Wetter morgen in Stuttgart?' },
 
     // Zusätzliche neue Skills (über 39 hinaus)
+    { id: 'CREATE_DIAGRAM', name: 'CREATE_DIAGRAM', cat: 'file', catColor: 'var(--cat-file)', desc: 'Erstellt ein Flussdiagramm, Ablaufdiagramm oder Prozessmodell.', example: 'Erstelle ein Ablaufdiagramm für den neuen digitalen Bauantrag.' },
     { id: 'GENERATE_JOB_INTERVIEW_QUESTIONS', name: 'GENERATE_JOB_INTERVIEW_QUESTIONS', cat: 'strategy', catColor: 'var(--cat-strategy)', desc: 'Erstellt einen strukturierten Interview-Leitfaden für Bewerbungsgespräche.', example: 'Erstelle Interview-Fragen für die Position des IT-Sicherheitsbeauftragten.' },
     { id: 'E_AKTE_CLASSIFICATION', name: 'E_AKTE_CLASSIFICATION', cat: 'admin', catColor: 'var(--cat-admin)', desc: 'Schlägt Aktenzeichen und Klassifizierungen nach dem kommunalen Aktenplan vor.', example: 'Wie sollte dieses Dokument über den neuen Radweg klassifiziert werden?' },
     { id: 'GRANT_APPLICATION_REVIEW', name: 'GRANT_APPLICATION_REVIEW', cat: 'admin', catColor: 'var(--cat-admin)', desc: 'Unterstützt bei der Vorprüfung von Förderanträgen auf Vollständigkeit.', example: 'Prüfe diesen Förderantrag für die Vereinsförderung auf fehlende Angaben.' },
@@ -81,6 +82,12 @@ const catTabs = document.querySelectorAll('.cat-tab');
 function init() {
     renderSkills(SKILLS);
     setupEventListeners();
+
+    // Initialize Mermaid
+    if (typeof mermaid !== 'undefined') {
+        mermaid.initialize({ startOnLoad: false, theme: 'default' });
+    }
+
     promptInput.focus();
 }
 
@@ -270,6 +277,28 @@ function renderAssistantResponse(data) {
         const mdDiv = document.createElement('div');
         mdDiv.className = 'markdown-body';
         mdDiv.innerHTML = marked.parse(data.answer);
+
+        // Render Mermaid Diagrams if present
+        if (typeof mermaid !== 'undefined') {
+            const mermaidBlocks = mdDiv.querySelectorAll('pre code.language-mermaid');
+            mermaidBlocks.forEach(async (block, index) => {
+                const pre = block.parentElement;
+                const id = `mermaid-${Date.now()}-${index}`;
+                const graphDefinition = block.textContent;
+
+                try {
+                    const { svg } = await mermaid.render(id, graphDefinition);
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'mermaid-wrapper';
+                    wrapper.innerHTML = svg;
+                    pre.replaceWith(wrapper);
+                } catch (e) {
+                    console.error('Mermaid rendering failed', e);
+                    // Leave the code block as fallback
+                }
+            });
+        }
+
         contentDiv.appendChild(mdDiv);
     }
 
